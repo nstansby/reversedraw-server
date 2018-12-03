@@ -1,0 +1,44 @@
+spring:
+  profiles.active: default
+---
+spring:
+  profiles: default
+
+  jpa:
+    show-sql: false
+
+    hibernate:
+      ddl-auto: validate
+      database-platformString: org.hibernate.dialect.MySQLDialect
+
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+
+    http:
+      multipart:
+        max-file-size: 12MB
+        max-request-size: 12MB
+        enabled: true
+
+  # Keep the connection alive if idle for a long time (needed in production)
+  datasource:
+    testWhileIdle: true
+    validationQuery: SELECT 1
+
+  http:
+    multipart:
+      max-file-size: 4096KB
+
+security:
+  filter-order: 5
+
+# We want to manually run migrations
+flyway:
+  enabled: false
+
+server:
+  tomcat:
+    access-log-enabled: true
+    access-log-pattern: "%a asdasd"
+
+identifier: development
