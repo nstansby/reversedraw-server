@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
+
 import static com.wednesdaybeers.reversedrawserver.dto.error.ErrorCode.INVALID_TICKET_IDENTIFIER;
 
 @RestController
@@ -40,6 +42,7 @@ public class TicketDeleteController {
         }
 
         ticket.setState(Ticket.State.DRAWN);
+        ticket.setDrawnDate(new Date());
 
         ticketRepository.save(ticket);
 
