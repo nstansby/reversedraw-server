@@ -5,7 +5,7 @@ import com.wednesdaybeers.reversedrawserver.responseGenerator.ticket.TicketRepon
 import com.wednesdaybeers.reversedrawserver.dto.RestResponse;
 import com.wednesdaybeers.reversedrawserver.dto.ticket.TicketDTO;
 import com.wednesdaybeers.reversedrawserver.model.ticket.TicketRepository;
-import com.wednesdaybeers.reversedrawserver.processor.WineDrawException;
+import com.wednesdaybeers.reversedrawserver.processor.ReverseDrawException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,22 +23,22 @@ import static com.wednesdaybeers.reversedrawserver.dto.error.ErrorCode.INVALID_T
 public class TicketDeleteController {
 
     @Autowired
-    TicketRepository ticketRepository;
+    private TicketRepository ticketRepository;
 
     @Autowired
-    TicketReponseGenerator ticketReponseGenerator;
+    private TicketReponseGenerator ticketReponseGenerator;
 
     @RequestMapping(method = RequestMethod.DELETE)
-    public ResponseEntity<RestResponse> getTickets(@RequestParam Integer id) throws WineDrawException {
+    public ResponseEntity<RestResponse> getTickets(@RequestParam Integer id) throws ReverseDrawException {
         if (id == null) {
-            throw new WineDrawException(INVALID_TICKET_IDENTIFIER, "No ticket specified.");
+            throw new ReverseDrawException(INVALID_TICKET_IDENTIFIER, "No ticket specified.");
         }
 
         Ticket ticket = ticketRepository.findById(id).orElseThrow(() ->
-                 new WineDrawException(INVALID_TICKET_IDENTIFIER, "ticket with ID " + id + " does not exist"));
+                 new ReverseDrawException(INVALID_TICKET_IDENTIFIER, "ticket with ID " + id + " does not exist"));
 
         if (ticket.getState() != Ticket.State.ACTIVE) {
-            throw new WineDrawException(INVALID_TICKET_IDENTIFIER, "ticket with ID " + id + " has already been drawn.");
+            throw new ReverseDrawException(INVALID_TICKET_IDENTIFIER, "ticket with ID " + id + " has already been drawn.");
         }
 
         ticket.setState(Ticket.State.DRAWN);

@@ -3,7 +3,7 @@ package com.wednesdaybeers.reversedrawserver.controller.ticket;
 import com.wednesdaybeers.reversedrawserver.dto.RestResponse;
 import com.wednesdaybeers.reversedrawserver.dto.ticket.TicketPostRequest;
 import com.wednesdaybeers.reversedrawserver.processor.TicketProcessor;
-import com.wednesdaybeers.reversedrawserver.processor.WineDrawException;
+import com.wednesdaybeers.reversedrawserver.processor.ReverseDrawException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +23,7 @@ public class TicketPostController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<RestResponse> createTickets(@RequestBody @Valid TicketPostRequest request)
-            throws WineDrawException {
+            throws ReverseDrawException {
 
         ticketProcessor.createTickets(request.getNames(), request.getNumTickets());
 

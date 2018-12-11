@@ -14,20 +14,13 @@ spring:
     properties:
       hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
 
-    http:
-      multipart:
-        max-file-size: 12MB
-        max-request-size: 12MB
-        enabled: true
-
   # Keep the connection alive if idle for a long time (needed in production)
   datasource:
+    url: jdbc:mysql://localhost/wine_draw?useSSL=false
+    username: winedrawuser
+    password: R5PcSelIp0jCWSXJ6xPd
     testWhileIdle: true
     validationQuery: SELECT 1
-
-  http:
-    multipart:
-      max-file-size: 4096KB
 
 security:
   filter-order: 5

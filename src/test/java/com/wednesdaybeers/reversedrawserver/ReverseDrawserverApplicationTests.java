@@ -1,4 +1,4 @@
-package com.wednesdaybeers.winedrawserver;
+package com.wednesdaybeers.reversedrawserver;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class WinedrawserverApplicationTests {
+public class ReverseDrawserverApplicationTests {
 
 	@Test
 	public void contextLoads() {

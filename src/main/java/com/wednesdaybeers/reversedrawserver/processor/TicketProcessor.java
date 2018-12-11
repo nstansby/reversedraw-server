@@ -22,10 +22,10 @@ public class TicketProcessor {
     @Autowired
     private UserCreator userCreator;
 
-    public void createTickets(List<String> names, int ticketsPerUser) throws WineDrawException
+    public void createTickets(List<String> names, int ticketsPerUser) throws ReverseDrawException
     {
         if (ticketRepository.count() != 0) {
-            throw new WineDrawException(ErrorCode.TICKETS_ALREADY_CREATED, "Tickets already created");
+            throw new ReverseDrawException(ErrorCode.TICKETS_ALREADY_CREATED, "Tickets already created");
         }
 
         for (String name : names) {

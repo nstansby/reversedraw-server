@@ -3,7 +3,7 @@ package com.wednesdaybeers.reversedrawserver;
 import com.wednesdaybeers.reversedrawserver.dto.RestResponse;
 import com.wednesdaybeers.reversedrawserver.dto.error.Error;
 import com.wednesdaybeers.reversedrawserver.dto.error.ErrorCode;
-import com.wednesdaybeers.reversedrawserver.processor.WineDrawException;
+import com.wednesdaybeers.reversedrawserver.processor.ReverseDrawException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -18,10 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(value = WineDrawException.class)
+    @ExceptionHandler(value = ReverseDrawException.class)
     @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
     public @ResponseBody
-    RestResponse wineDrawException(HttpServletRequest request, HttpServletResponse response, WineDrawException e) {
+    RestResponse reverseDrawException(HttpServletRequest request, HttpServletResponse response, ReverseDrawException e) {
         return e.toErrorDTO();
     }
 
